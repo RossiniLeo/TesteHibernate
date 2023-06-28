@@ -3,6 +3,7 @@ package DAO;
 import Model.Usuario;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class UsuarioDAO {
 
@@ -23,5 +24,10 @@ public class UsuarioDAO {
     public void excluir(Usuario usuario) {
         usuario = em.merge(usuario);
         this.em.remove(usuario);
+    }
+
+    public List<Usuario> buscarTodos() {
+        String jpql = "SELECT p FROM USUARIO P";
+        return	em.createQuery(jpql, Usuario.class).getResultList();
     }
 }

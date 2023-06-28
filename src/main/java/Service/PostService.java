@@ -5,6 +5,7 @@ import DAO.PostDAO;
 import Model.Post;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class PostService {
 	EntityManager em = ConnectionFactory.getEntityManager();

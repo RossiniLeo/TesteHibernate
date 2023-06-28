@@ -9,40 +9,43 @@ public class Comentario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int comentarioID;
-	private int postID;
-	private int userID;
+	private Long comentarioID;
+	@ManyToOne
+	@JoinColumn(name = "post_post_id")
+	private Post post;
+	@ManyToOne
+	private Usuario usuario;
 	private Date dataComentario;
 	private String comentario;
 	private Date dataAtualizacao;
-	
+
 	public Comentario() {}
 	
-	public Comentario(int comentarioID, int postID, int userID, Date dataComentario, String comentario, Date dataAtualizacao) {
+	public Comentario(Post post, Usuario usuario, Date dataComentario, String comentario, Date dataAtualizacao) {
 		setComentarioID(comentarioID);
-		setPostID(postID);
-		setUserID(userID);
+		setPost(post);
+		setUsuario(usuario);
 		setDataComentario(dataComentario);
 		setComentario(comentario);
 		setDataAtualizacao(dataAtualizacao);
 	}
 	
-	public Comentario( int postID, int userID, String comentario) {
-		setPostID(postID);
-		setUserID(userID);
+	public Comentario(Post post, Usuario usuario, String comentario) {
+		setPost(post);
+		setUsuario(usuario);
 		setComentario(comentario);
 	}
 	
-	public int getComentarioID() {
+	public Long getComentarioID() {
 		return comentarioID;
 	}
-	
-	public int getPostID() {
-		return postID;
+
+	public Post getPost() {
+		return post;
 	}
 	
-	public int getUserID() {
-		return userID;
+	public Usuario usuario() {
+		return usuario;
 	}
 	
 	public Date getDataComentario() {
@@ -57,16 +60,16 @@ public class Comentario {
 		return dataAtualizacao;
 	}
 	
-	public void setComentarioID(int comentarioID) {
+	public void setComentarioID(Long comentarioID) {
 		this.comentarioID = comentarioID;
 	}
-	
-	public void setPostID(int postID) {
-		this.postID = postID;
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 	
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	public void setDataComentario(Date dataPost) {

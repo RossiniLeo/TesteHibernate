@@ -6,8 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a871040a-734d-4c42-9f99-9798b6027d3b" name="Changes" comment="Model, Service e DAO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/ComentarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/ComentarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/ConnectionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/ConnectionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/PostDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/PostDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/UsuarioDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/PostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tests/Testes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tests/Testes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Comentario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Comentario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/post.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +76,26 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\leona_hbcb91r\OneDrive\Documentos\Projetos Java\TesteHibernate\src\main\java\Service" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Testes" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Tests.Testes" />
+      <module name="TesteHibernate" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Testes" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

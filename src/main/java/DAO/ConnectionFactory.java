@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class ConnectionFactory {
     private static final EntityManagerFactory FACTORY = Persistence
-            .createEntityManagerFactory("loja");
+            .createEntityManagerFactory("forum");
 
     public static EntityManager getEntityManager() {
         return FACTORY.createEntityManager();
