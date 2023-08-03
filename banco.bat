@@ -1,0 +1,1 @@
+java -cp hsqldb-2.7.2.jar org.hsqldb.server.Server -database.0 teste
