@@ -3,6 +3,7 @@ package service.impl;
 
 import java.util.List;
 
+import dao.impl.BaseDao;
 import model.Posts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,10 +11,10 @@ import org.springframework.stereotype.Service;
 import service.IPostService;
 import dao.IBaseDao;
 
-@Service
+@Service("postService")
 public class PostService implements IPostService {
 	@Autowired
-	IBaseDao<Posts, Integer> baseDao;
+	IBaseDao<Posts, Integer> baseDao = new BaseDao<>();
 
 	public void setBaseDao(IBaseDao<Posts, Integer> baseDao) {
 		this.baseDao = baseDao;

@@ -9,11 +9,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import dao.IBaseDao;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
+import utils.HibernateUtils;
 
-@Service
+import javax.transaction.Transactional;
+
+@Repository
 public class BaseDao<T, ID extends Serializable> implements IBaseDao<T, ID> {
-	private SessionFactory sessionFactory;
+	private static SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -32,9 +35,11 @@ public class BaseDao<T, ID extends Serializable> implements IBaseDao<T, ID> {
 	 * @return
 	 */
 	@Override
+	@Transactional
 	public List<T> findAll(Class<T> clazz) {
 		try {
-			return getCurrentSession().createQuery("from " + clazz.getName())
+			Session session = getCurrentSession();
+			return session.createQuery("from " + clazz.getName())
 					.list();
 		} catch (RuntimeException e) {
 			throw e;
@@ -60,11 +65,13 @@ public class BaseDao<T, ID extends Serializable> implements IBaseDao<T, ID> {
 	 */
 	@Override
 	public void save(T t) {
+		Session session = sessionFactory.openSession();
 		try {
-			getCurrentSession().save(t);
+			session.save(t);
 		} catch (RuntimeException e) {
 			throw e;
 		}
+		sessionFactory.close();
 	}
 
 	/**

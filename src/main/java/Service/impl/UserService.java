@@ -3,6 +3,7 @@ package service.impl;
 
 import java.util.List;
 
+import dao.impl.BaseDao;
 import model.Usertable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,7 @@ import service.IUserService;
 import dao.IBaseDao;
 
 @Service
-class UserService implements IUserService {
+public class UserService implements IUserService {
 	@Autowired
 	private IBaseDao<Usertable, Integer> baseDao;
 

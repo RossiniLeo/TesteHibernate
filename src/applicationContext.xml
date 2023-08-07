@@ -2,20 +2,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:tx="http://www.springframework.org/schema/tx"
 	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:context="http://www.springframework.org/schema/context"
 	   xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
-		<property name="url" value="jdbc:hsqldb:hsql://localhost:9001"/> <!--  jdbc:hsqldb:mem:. -->
+		<property name="url" value="jdbc:hsqldb:hsql://localhost:9001/"/>
 		<property name="username" value="sa"/>
 		<property name="password" value=""/>
-		<property name="maxActive" value="100000"/>
-		<property name="maxIdle" value="30"/>
-		<property name="maxWait" value="16000"/>
-		<property name="minIdle" value="0"/>
 	</bean>
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="utils.HibernateUtils">
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
@@ -24,10 +21,11 @@
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.format_sql">false</prop>
-				<prop key="hibernate.dialect"> org.hibernate.dialect.MySQLDialect
+				<prop key="hibernate.dialect"> org.hibernate.dialect.HSQLDialect
 				</prop>
 			</props>
 		</property>
+		<property name="hibernate.archive.autodetection" value="class" />
 		<property name="annotatedClasses">
 			<list>
 				<value>model.Usertable</value>
@@ -48,25 +46,24 @@
 	<bean id="commentService" class="service.impl.CommentService"
 		autowire="byName">
 	</bean>
+
+	<context:component-scan base-package="dao.impl"></context:component-scan>
+	<context:component-scan base-package="service.impl"></context:component-scan>
 	<!-- Transaction Manager -->
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		  class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
-	<bean id="hibernateUtils" class="utils.HibernateUtils"
-		  autowire="byName">
-	</bean>
-	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
-	<tx:advice id="txAdvice">
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="*"/>
+			<tx:method name="*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
 	<!-- Aop -->
 	<aop:config>
 		<aop:pointcut expression="execution(* service.impl.*.*(..))"
-			id="pt" />
+					  id="pt" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pt" />
 	</aop:config>
 </beans>

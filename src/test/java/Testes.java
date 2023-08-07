@@ -5,6 +5,9 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.ICommentService;
 import service.IPostService;
+import service.IUserService;
+import service.impl.PostService;
+import service.impl.UserService;
 import utils.HibernateUtils;
 import utils.TimeUtils;
 
@@ -17,6 +20,8 @@ public class Testes {
     private ICommentService commentService;
     @Autowired
     private IPostService postService;
+
+    private IUserService userService;
     private Usertable user = new Usertable();
 
     @BeforeAll
@@ -43,7 +48,15 @@ public class Testes {
         user.setUsername("Usuario");
         user.setPassword("Senha");
         user.setMail("usuario@email.com");
-        user.setSex("Male");
+        user.setSex("M");
+        user.setId(2);
+    }
+
+    @Test
+    public void createUserTest() {
+        Usertable user = new Usertable();
+        setupUser(user);
+        userService.save(user);
     }
 
     @Test
@@ -60,7 +73,7 @@ public class Testes {
     @Test
     public void searchPosts() {
         List<Posts> postsList = postService.findAll();
-        postsList.forEach(post -> System.out.println(post));
+        postsList.forEach(System.out::println);
     }
 
     @Test
